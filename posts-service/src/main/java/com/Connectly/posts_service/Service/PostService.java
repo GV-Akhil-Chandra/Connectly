@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -24,5 +26,23 @@ public class PostService {
         log.info("Created post with id: {}", post.getId());
 
         return modelMapper.map(post, PostDTO.class);
+    }
+
+    public PostDTO findById(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new RuntimeException("Post not found"));
+        log.info("Fetching post with id: {}", post.getId());
+
+        return modelMapper.map(post, PostDTO.class);
+    }
+
+    public List<PostDTO> findAllUserPosts(Long userId) {
+        log.info("Fetching posts for user id: {}", userId);
+        List<Post> postList = postRepository.findAllByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("User posts not found"));
+
+        return postList.stream()
+                .map(e -> modelMapper.map(e, PostDTO.class))
+                .toList();
     }
 }
