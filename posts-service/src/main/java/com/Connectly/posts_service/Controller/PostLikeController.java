@@ -20,7 +20,7 @@ public class PostLikeController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/delete/{postId}")
+    @DeleteMapping("/{postId}")
     public ResponseEntity<Void> unlikePost(@PathVariable Long postId){
         postLikeService.unlikePost(postId);
 
