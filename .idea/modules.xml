@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Connectly.iml" filepath="$PROJECT_DIR$/.idea/Connectly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/connection-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/connection-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/posts-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/posts-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" />
     </modules>
   </component>
