@@ -20,6 +20,8 @@ spring:
                 - Path=/api/v1/posts/**
               filters:
                 - StripPrefix=2
+#                making authentication filter mandatory here
+                - name: AuthenticationFilter
 
             - id: connection-service
               uri: lb://CONNECTION-SERVICE
@@ -27,6 +29,8 @@ spring:
                 - Path=/api/v1/connections/**
               filters:
                 - StripPrefix=2
+#                making authentication filter mandatory here
+                - name: AuthenticationFilter
 
 server:
   port: 8080
@@ -35,3 +39,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+# JWT
+jwt:
+  secretKey: HiThisIsASecretKeyForApiAuthentication2026v1
