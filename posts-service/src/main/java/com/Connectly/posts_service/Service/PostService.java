@@ -1,5 +1,8 @@
 package com.Connectly.posts_service.Service;
 
+import com.Connectly.posts_service.Authentication.AuthContextHolder;
+import com.Connectly.posts_service.Client.ConnectionServiceClient;
+import com.Connectly.posts_service.DTO.PersonDTO;
 import com.Connectly.posts_service.DTO.PostCreationDTO;
 import com.Connectly.posts_service.DTO.PostDTO;
 import com.Connectly.posts_service.Entity.Post;
@@ -18,6 +21,7 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
+    private final ConnectionServiceClient connectionServiceClient;
 
     public PostDTO createPost(PostCreationDTO postCreationDTO, Long userId) {
         Post post = modelMapper.map(postCreationDTO, Post.class);
@@ -32,6 +36,10 @@ public class PostService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("Post not found"));
         log.info("Fetching post with id: {}", post.getId());
+
+        // TODO: remove in future
+        List<PersonDTO> personDTOList = connectionServiceClient
+                .getFirstDegreeConnections(AuthContextHolder.getCurrentUserId());
 
         return modelMapper.map(post, PostDTO.class);
     }

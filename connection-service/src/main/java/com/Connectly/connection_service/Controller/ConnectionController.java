@@ -19,6 +19,8 @@ public class ConnectionController {
 
     @GetMapping("/{userId}/first-degree")
     public ResponseEntity<List<Person>> getFirstDegreeConnections(@PathVariable Long userId){
+//        after implementing FeignCLientInterceptor in upstream services, in method parameter use
+//        (@RequestHeader("X-User-Id"), userId)
         List<Person> personList = connectionService.getFirstDegreeConnections(userId);
 
         return ResponseEntity.ok(personList);

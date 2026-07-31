@@ -28,8 +28,8 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<PostDTO> getPostById(@PathVariable(name = "postId") Long postId,
-                                               @RequestHeader("X-User-Id") Long userId){
+    public ResponseEntity<PostDTO> getPostById(@PathVariable(name = "postId") Long postId){
+//                                               @RequestHeader("X-User-Id") Long userId){
         PostDTO postDTO = postService.findById(postId);
         return new ResponseEntity<>(postDTO, HttpStatus.FOUND);
     }
