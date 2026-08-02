@@ -32,6 +32,15 @@ spring:
 #                making authentication filter mandatory here
                 - name: AuthenticationFilter
 
+            - id: uploader-service
+              uri: lb://UPLOADER-SERVICE
+              predicates:
+                - Path=/api/v1/uploader/**
+              filters:
+                - StripPrefix=2
+#                 making authentication filter mandatory here
+                - name: AuthenticationFilter
+
 server:
   port: 8080
 
